@@ -17,7 +17,7 @@ const Signup = () => {
     gender:"",
     phone:"",
     password:"",
-    cpassword:""
+    confirmpassword:""
   
   })
 
@@ -62,7 +62,7 @@ const Signup = () => {
       <input className='inputs' placeholder='Phone' name ='phone' type={'number'} value = {userInput.phone} onChange={handleChange}/>
       <input className='inputs' placeholder='Email Id' name ='emailId' type={'email'} value = {userInput.emailId} onChange={handleChange}/>
       <input className='inputs' placeholder='Password' name ='password' type={'password'} value = {userInput.password} onChange={handleChange}/>
-      <input className='inputs' placeholder='Confirm Password' name ='cpassword' type={'password'} value = {userInput.cpassword} onChange={handleChange}/>
+      <input className='inputs' placeholder='Confirm Password' name ='confirmpassword' type={'password'} value = {userInput.cpassword} onChange={handleChange}/>
 
  <button className='button-block' onClick={handleSave}>create account</button>
  <div className='no-account'>Already have an account? <Link to = '/'>Sign In</Link></div>
