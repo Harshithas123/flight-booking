@@ -1,17 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+const  express =  require("express");
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const { firebaseDatabase } = require("../../backend/firebase-handler.js");
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const { ref, set, onValue } = require("firebase/database");
+
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Enter url");
+});
+ 
+app.get("/add-passanger", async (req, res) => {
+  const { name, gender, phonenumber, emailid } = req.query;
+  res.send("Data Added to firebase");
+  const databaseRef = ref(firebaseDatabase, `passander/${phonenumber}`);
+  await set (databaseRef, { name:name, gender:gender, phonenumber:number, emailid:email });
+});
+
+app.get("/get-passanger", (req, res) => {
+  const { phonenumber } = req.query;
+  const databaseRef = ref(firebaseDatabase, `passander/${phonenumber}`);
+  onValue(databaseRef, (snapshot) => {
+    res.send(snapshot.val());
+  }, { onlyOnce: true }
+  );
+});
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+console.log("server started on port", port)
+});
