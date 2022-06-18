@@ -7,7 +7,7 @@ import '../../server/flight-list/list.css';
 
 const List = () => {
     const [flightList,  setFlightList] = useState([]);
-   const nav = useNavigate();
+        const nav = useNavigate();
         useEffect(() => {  
             const fetchData = async () => {
                 const Ref = ref(firebaseDatabase  , `FLIGHT_RECORDS` );
@@ -20,9 +20,10 @@ const List = () => {
                         for (const name in DataSnapshot.val()) {
                             const flightList = DataSnapshot.child(name).val();
                             temp.push(flightList);
+                            
                         }
                         setFlightList(temp);          
-                        nav("/List");
+                        nav("/list")
                     }
                 })
             }
@@ -30,29 +31,33 @@ const List = () => {
         }, []);
    
         return (
-            <div >
-                                <div><Link to ='/addflight' >Add Flight</Link></div>
-            <div>
+            
+            <div className="app" >
+                 <div><p><Link to ='/addflight' >ADD FLIGHT</Link></p></div>
+             <div>
                 <h1> List of Flights</h1>
-                <div>
+            <div>
+                    
+            
                     {
                         flightList.map((item) => {
                             return (
                                 
-                                <div >
+                                <div className="grid-content" >
                                     <p>Airlines name:{item.airline}</p>
                                     <p>Date{item.date}</p>
                                     <p>Departure time:{item.depttime}</p>
                                     <p>Arrival time:{item.arrivetime}</p>
                                     <p>Boarding point:{item.boardpt}</p>
                                     <p>Destination:{item.dest}</p>
-                                    <p>Cost{item.cost}</p>
+                                    <p>Cost:{item.cost}</p>
                                 </div>
                             
                             )
                         })
                     }
                 </div>
+            
             </div>
             </div>
         )

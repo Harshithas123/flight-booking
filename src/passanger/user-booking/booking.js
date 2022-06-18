@@ -5,7 +5,7 @@ import { onValue, push,ref, set } from "firebase/database";
 import { Button } from "@mui/material";
 import { firebaseAuth, firebaseDatabase } from "../../backend/firebase-handler.js";
 import { signOut } from "firebase/auth";
-//import '../../passanger/user-booking/booking.css';
+import '../../passanger/user-booking/booking.css';
 
 const Ticket = () => {
     const [flightList,  setFlightList] = useState([]);
@@ -49,6 +49,7 @@ const handlesignout = async ()=>{
             <div className="content">
                 <Button  onClick={handlesignout}>Sign Out</Button>
                 <input className="inputs" placeholder='Date' name ='date' type ={'date'} />
+                <input className="inputs" placeholder='cost' name ='cost' type ={'number'} />
 
                 <h1> Book Flights</h1>
                 <div className="list">

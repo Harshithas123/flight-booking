@@ -24,7 +24,7 @@ function Login() {
 
       
 
-      nav("/home");
+      nav("/ticket");
       
     }catch(err){
       alert("Invalid Credentials");

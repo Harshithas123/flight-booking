@@ -1,9 +1,11 @@
 import { ref, set } from "firebase/database";
 import React from "react";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { firebaseDatabase } from "../../backend/firebase-handler.js";
 import '../../server/add-light/add-flight-style.css';
 function AddFlight() {
+    
 
     const[flightData,setFlightData] =useState({
         airline:"",
@@ -16,6 +18,7 @@ function AddFlight() {
     })
 
     const handleChange=(event)=>{
+        
         const {name,value}=event.target;
         setFlightData({
             ...flightData,
@@ -23,13 +26,14 @@ function AddFlight() {
         })
     }
     
-    //const [value, onChange] = useState('');
+    const [value, onChange] = useState('');
     
 
     const handleUpload=async()=>{
         const recordref=ref(firebaseDatabase,`FLIGHT_RECORDS/${flightData.airline}`);
         await set(recordref,flightData);
         alert("Flight Details Added")
+        
     };
 
     return(
